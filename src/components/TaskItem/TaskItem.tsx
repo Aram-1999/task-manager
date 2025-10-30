@@ -26,10 +26,11 @@ function TaskItem({ task, onDelete, onStatusChange }: TaskItemProps) {
   }
 
   return (
-    <div>
+    <div className='border-2 rounded-xl p-3 mt-5'>
       <div>
-        <h3>{title}</h3>
-        <select value={status}
+        <h3 className='font-semibold text-2xl inline'>{title}</h3>
+        <button className='float-right mx-3 p-1 bg-red-300 rounded hover:cursor-pointer' onClick={() => onDelete(id)}>Delete</button>
+        <select className='float-right mx-3 border p-1 rounded' value={status}
           onChange={(event) => {
             const optionValue = event.target.value;
             if (isTaskStatus(optionValue)) {
@@ -41,15 +42,15 @@ function TaskItem({ task, onDelete, onStatusChange }: TaskItemProps) {
         >
           {options.map((option) => option)}
         </select>
-        <button onClick={() => onDelete(id)}>Delete</button>
+        
       </div>
 
       <div>
-        <p>{description}</p>
+        <p className='text-lg mt-1'>{description}</p>
       </div>
-      <div>
-        <p>Priority: {priority}</p>
-        <p>Due: {dueDate}</p>
+      <div className='mt-3'>
+        <p className='inline'>Priority: {priority}</p>
+        <p className='inline mx-10'>Due: {dueDate}</p>
       </div>
     </div>
   );

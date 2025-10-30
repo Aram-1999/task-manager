@@ -1,7 +1,7 @@
 import type { Task, TaskPriority, TaskStatus } from "../../types";
 import { useState } from "react";
 interface FormProps {
-    onSubmit: (task: Task) => void;
+  onSubmit: (task: Task) => void;
 }
 
 function Form({ onSubmit }: FormProps) {
@@ -68,13 +68,17 @@ function Form({ onSubmit }: FormProps) {
     description: `description-${timeNow}`,
     dueDate: `dueDate-${timeNow}`,
     priority: `priority-${timeNow}`,
-    status: `status-${timeNow}`
-  }
+    status: `status-${timeNow}`,
+  };
 
   return (
-    <form onSubmit={handleForm}>
-      <label htmlFor={formIDs.title}>Title</label>
+    <form className="border rounded-lg shadow-xl p-5" onSubmit={handleForm}>
+      <label className="text-lg font-semibold" htmlFor={formIDs.title}>
+        Title
+      </label>
+      <br />
       <input
+        className="border border-gray-500 hover:border-black rounded-lg mt-2 py-1 px-3"
         type="text"
         name="title"
         id={formIDs.title}
@@ -82,33 +86,64 @@ function Form({ onSubmit }: FormProps) {
         onChange={handleChange}
       />
       <br />
-      <label htmlFor={formIDs.description}>Description</label>
+      <label className="text-lg font-semibold" htmlFor={formIDs.description}>
+        Description
+      </label>
+      <br />
       <textarea
+        className="border border-gray-500 hover:border-black rounded-lg mt-2 py-1 px-3"
+        cols={50}
+        rows={3}
         name="description"
         id={formIDs.description}
         value={formData.description}
         onChange={handleChange}
       />
-      <br />
-      <label htmlFor={formIDs.dueDate}>Due Date</label>
-      <input
-        type="date"
-        id={formIDs.dueDate}
-        name="dueDate"
-        value={formData.dueDate}
-        onChange={handleDateChange}
-      />
-      <select name="priority" id={formIDs.priority} value={formData.priority} onChange={handleSelectChange}>
-        <option value="low">low</option>
-        <option value="medium">medium</option>
-        <option value="high">high</option>
-      </select>
-      <select name="status" id={formIDs.status} value={formData.status} onChange={handleSelectChange}>
-        <option value="pending">Pending</option>
-        <option value="in-progress">In Progress</option>
-        <option value="completed">Completed</option>
-      </select>
-      <button type="submit">Add!</button>
+      <div className='mt-5'>
+        <label className="text-lg font-semibold" htmlFor={formIDs.dueDate}>
+          Due Date
+        </label>
+        <input
+          className="border rounded-sm mx-5 px-2 py-1"
+          type="date"
+          id={formIDs.dueDate}
+          name="dueDate"
+          value={formData.dueDate}
+          onChange={handleDateChange}
+        />
+        <label className="ml-8 text-lg font-semibold" htmlFor={formIDs.priority}>
+          Priority
+        </label>
+        <select
+          className="ml-5 border rounded p-1 px-2"
+          name="priority"
+          id={formIDs.priority}
+          value={formData.priority}
+          onChange={handleSelectChange}
+        >
+          <option value="low">low</option>
+          <option value="medium">medium</option>
+          <option value="high">high</option>
+        </select>
+        <label className="ml-8 text-lg font-semibold" htmlFor={formIDs.status}>
+          Status
+        </label>
+        <select
+          className="ml-5 border rounded p-1 px-2"
+          name="status"
+          id={formIDs.status}
+          value={formData.status}
+          onChange={handleSelectChange}
+        >
+          <option value="pending">Pending</option>
+          <option value="in-progress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+
+      <button className="mt-5 border px-50 block mx-auto bg-blue-300 p-1 rounded-lg hover: cursor-pointer" type="submit">
+        Add!
+      </button>
     </form>
   );
 }
