@@ -25,10 +25,12 @@ function Form({ onSubmit }: FormProps) {
   };
 
   const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((f) => ({
+    setFormData((f) => {
+      const [year, month, day] = event.target.value.split("-");
+      return {
       ...f,
-      dueDate: dateDisplay(new Date(event.target.value)),
-    }));
+      dueDate: dateDisplay(new Date(Number(year), Number(month)-1, Number(day))),
+    }});
   };
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

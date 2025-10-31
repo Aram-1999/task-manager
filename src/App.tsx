@@ -24,6 +24,7 @@ function App() {
     );
     setTasks(newTasks);
     setFilteredTasks(newTasks);
+    handleFiltering(filters, newTasks)
   };
 
   const handleSubmit = (task: Task) => {
@@ -36,12 +37,12 @@ function App() {
   const handleFiltering = (newFilters: {
     status?: TaskStatus;
     priority?: "low" | "medium" | "high";
-  }, newTasksDelete?: Task[]) => {
+  }, newTasksFiltered?: Task[]) => {
     setFilters(newFilters)
     setFilteredTasks(() => {
       let newTasks;
-      if (newTasksDelete) {
-        newTasks = [...newTasksDelete];
+      if (newTasksFiltered) {
+        newTasks = [...newTasksFiltered];
       } else {
         newTasks = [...tasks]
       }
